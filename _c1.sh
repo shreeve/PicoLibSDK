@@ -91,7 +91,7 @@ if [[ "${MEMMAP}" == "noflash" ]]; then
   exit 0
 fi
 
-../../../_tools/PicoPadLoaderCrc/LoaderCrc "${TARGET}".bin "${TARGET}".uf2
+# ../../../_tools/PicoPadLoaderCrc/LoaderCrc "${TARGET}".bin "${TARGET}".uf2
 
 if [[ $? > 0 ]]; then echo "ERROR!"; exit 1; fi
 
