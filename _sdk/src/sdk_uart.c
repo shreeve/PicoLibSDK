@@ -61,7 +61,7 @@ void UART_Baud_hw(uart_hw_t* hw, u32 baudrate)
 	hw->fbrd = fdiv;
 
 	// dummy line control register write, to latch new divisor
-	RegSet(&hw->lcr_h, 0);		
+	RegSet(&hw->lcr_h, 0);
 }
 
 // get baudrate
@@ -307,7 +307,7 @@ u32 UART_PrintArg(int uart, const char* fmt, va_list args)
 
 	// initialize stream to write to
 	StreamWriteUartInit(&wstr, uart);
-	
+
 	// print string
 	return StreamPrintArg(&wstr, &rstr, args);
 }
@@ -397,7 +397,7 @@ u32 UartPrintArg(const char* fmt, va_list args)
 	// initialize stream to write to
 	Stream0Init(&wstr); // initialize nul stream
 	wstr.write = StreamWriteUartStdio; // write callback
-	
+
 	// print string
 	return StreamPrintArg(&wstr, &rstr, args);
 }
@@ -476,7 +476,7 @@ void UartStdioTerm(void)
 	UART_DisableIRQ(UART_STDIO_PORT, UART_IRQ_TX); // disable transmit interrupt
 	UART_DisableIRQ(UART_STDIO_PORT, UART_IRQ_RX); // disable receive interrupt
 	UART_DisableIRQ(UART_STDIO_PORT, UART_IRQ_TIMEOUT); // enable receive timeout interrupt
-	
+
 	// disable UART interrupt
 	NVIC_IRQDisable(IRQ_UART0 + UART_STDIO_PORT);
 
@@ -775,7 +775,7 @@ void UartSample_Term(void)
 	UART_DisableIRQ(UARTSAMPLE_UART, UART_IRQ_TX); // disable transmit interrupt
 	UART_DisableIRQ(UARTSAMPLE_UART, UART_IRQ_RX); // disable receive interrupt
 	UART_DisableIRQ(UARTSAMPLE_UART, UART_IRQ_TIMEOUT); // enable receive timeout interrupt
-	
+
 	// disable UART interrupt
 	NVIC_IRQDisable(IRQ_UART0 + UARTSAMPLE_UART);
 #endif // UARTSAMPLE_TXMODE, UARTSAMPLE_RXMODE
