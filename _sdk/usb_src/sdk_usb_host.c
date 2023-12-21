@@ -258,7 +258,7 @@ void UsbHostSetupComp(u8 dev_addr, u8 dev_epinx, u8 xres, u16 len)
 {
 	// get setup packet with request
 	const sUsbSetupPkt* setup = &UsbSetupRequest;
-	
+
 	// not success
 	if (xres != USB_XRES_OK)
 	{
@@ -938,7 +938,7 @@ void UsbHostIrq()
 
 		// data memory barrier to isolate reading status register
 		dmb();
-	}	
+	}
 
 	// get interrupt status
 	u32 status = *USB_INTS;
@@ -1140,12 +1140,12 @@ void UsbHostEpInit(u8 ep, u8 dev_addr, u8 dev_epinx, u16 pktmax, u8 xfer, u8 int
 
 	// setup control register (single buffer)
 	u32 val =	(sep->data_buf - USB_RAM) |	// offset of data buffer in DPRAM
-			(xfer << 26) |			// transfer type 
+			(xfer << 26) |			// transfer type
 			B29 |				// enable interrupt for every transferred buffer
 			B31;				// endpoint enable
 	if (inter != 0) val |= (inter - 1) << 16;	// interval to poll this endpoint in [ms]
 	*sep->ep_ctrl = val;				// set control register
-	
+
 	// delay packets in ISO and interrupt (SOF_SYNC)
 	if ((xfer == USB_XFER_ISO) || (xfer == USB_XFER_INT))
 		RegSet(USB_SIE_CTRL, B8);

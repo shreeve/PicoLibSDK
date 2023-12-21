@@ -308,7 +308,7 @@ void UsbHostCdcCfgComp(u8 dev_addr, u8 xres)
 
 	// prepare for incoming data (do not use UsbHostCdcInxRecv, device is not mounted yet)
 	u16 space = (u16)RingFree(&cdc->rx_ring);
-	if ((space > 0) && !UsbHostIsBusy(cdc->dev_addr, cdc->ep_in)) 
+	if ((space > 0) && !UsbHostIsBusy(cdc->dev_addr, cdc->ep_in))
 	{
 		// start receiving data
 		u8 ep = UsbHostDevEp(cdc->dev_addr, cdc->ep_in);
